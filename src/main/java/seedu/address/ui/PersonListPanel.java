@@ -5,11 +5,14 @@ import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cell.Cell;
 
@@ -21,35 +24,27 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Cell> personListView;
+    private GridPane personGridPane;
 
     public PersonListPanel(ObservableList<Cell> cellList, ObservableValue<Cell> selectedPerson,
                            Consumer<Cell> onSelectedPersonChange) {
         super(FXML);
-        personListView.setItems(cellList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
-        personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selection in cell list panel changed to : '" + newValue + "'");
-            onSelectedPersonChange.accept(newValue);
-        });
-        selectedPerson.addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selected cell changed to: " + newValue);
+        for(int i = 0; i < personList.size(); i++) {
+            Rectangle cell = new Rectangle(30, 30);
+            cell.setFill(Color.WHITE);
+            personGridPane.add(cell, i, 0);
+        }
 
-            // Don't modify selection if we are already selecting the selected cell,
-            // otherwise we would have an infinite loop.
-            if (Objects.equals(personListView.getSelectionModel().getSelectedItem(), newValue)) {
-                return;
-            }
-
-            if (newValue == null) {
-                personListView.getSelectionModel().clearSelection();
-            } else {
-                int index = personListView.getItems().indexOf(newValue);
-                personListView.scrollTo(index);
-                personListView.getSelectionModel().clearAndSelect(index);
+        personList.addListener((ListChangeListener<Person>) p -> {
+            personGridPane.getChildren().clear();
+            for(int i = 0; i < personList.size(); i++) {
+                Rectangle cell = new Rectangle(30, 30);
+                cell.setFill(Color.WHITE);
+                personGridPane.add(cell, i, 0);
             }
         });
     }
+
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Cell} using a {@code PersonCard}.

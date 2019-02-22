@@ -49,12 +49,12 @@
         <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.4" VBox.vgrow="ALWAYS">
           <VBox fx:id="cellList" minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
             <padding>
-              <Insets top="100" right="10" bottom="100" left="10" />
+              <Insets top="100" right="20" bottom="100" left="20" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder"/>
           </VBox>
 
-          <StackPane fx:id="browserPlaceholder" prefWidth="340" >
+          <StackPane fx:id="browserPlaceholder" prefWidth="100" >
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

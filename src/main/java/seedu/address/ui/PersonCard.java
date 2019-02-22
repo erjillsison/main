@@ -42,12 +42,12 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Cell cell, int displayedIndex) {
         super(FXML);
         this.cell = cell;
-        id.setText(displayedIndex + ". ");
-        name.setText(cell.getName().fullName);
-        phone.setText(cell.getPhone().value);
-        address.setText(cell.getAddress().value);
-        email.setText(cell.getEmail().value);
-        cell.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //id.setText(displayedIndex + ". ");
+        //name.setText(person.getName().fullName);
+        //phone.setText(person.getPhone().value);
+        //address.setText(person.getAddress().value);
+        //email.setText(person.getEmail().value);
+        //person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

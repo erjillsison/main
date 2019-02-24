@@ -39,6 +39,7 @@ public class PersonListPanel extends UiPart<Region> {
             personGridPane.getChildren().clear();
             for(int i = 0; i < personList.size(); i++) {
                 Rectangle cell = new Rectangle(30, 30);
+                cell.setStroke(Color.BLACK);
                 cell.setFill(Color.WHITE);
                 personGridPane.add(cell, i, 0);
             }

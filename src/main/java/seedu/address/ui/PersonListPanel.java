@@ -29,21 +29,22 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Cell> cellList, ObservableValue<Cell> selectedPerson,
                            Consumer<Cell> onSelectedPersonChange) {
         super(FXML);
-        for(int i = 0; i < personList.size(); i++) {
-            Rectangle cell = new Rectangle(30, 30);
-            cell.setFill(Color.WHITE);
-            personGridPane.add(cell, i, 0);
-        }
+
+        populateGrid(personList);
 
         personList.addListener((ListChangeListener<Person>) p -> {
             personGridPane.getChildren().clear();
-            for(int i = 0; i < personList.size(); i++) {
-                Rectangle cell = new Rectangle(30, 30);
-                cell.setStroke(Color.BLACK);
-                cell.setFill(Color.WHITE);
-                personGridPane.add(cell, i, 0);
-            }
+            populateGrid(personList);
         });
+    }
+
+    void populateGrid(ObservableList<Person> personList){
+        for(int i = 0; i < personList.size(); i++) {
+            Rectangle cell = new Rectangle(30, 30);
+            cell.setStroke(Color.BLACK);
+            cell.setFill(Color.WHITE);
+            personGridPane.add(cell, i, 0);
+        }
     }
 
 

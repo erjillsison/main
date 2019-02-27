@@ -14,7 +14,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Cell;
 
 /**
  * Panel containing the list of persons.
@@ -26,8 +26,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private GridPane personGridPane;
 
-    public PersonListPanel(ObservableList<Person> personList, ObservableValue<Person> selectedPerson,
-            Consumer<Person> onSelectedPersonChange) {
+    public PersonListPanel(ObservableList<Cell> cellList, ObservableValue<Cell> selectedPerson,
+                           Consumer<Cell> onSelectedPersonChange) {
         super(FXML);
 
         populateGrid(personList);
@@ -49,18 +49,18 @@ public class PersonListPanel extends UiPart<Region> {
 
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Cell} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Cell> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Cell cell, boolean empty) {
+            super.updateItem(cell, empty);
 
-            if (empty || person == null) {
+            if (empty || cell == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(cell, getIndex() + 1).getRoot());
             }
         }
     }

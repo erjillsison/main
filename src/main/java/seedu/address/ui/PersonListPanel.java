@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -30,16 +29,19 @@ public class PersonListPanel extends UiPart<Region> {
                            Consumer<Cell> onSelectedPersonChange) {
         super(FXML);
 
-        populateGrid(personList);
+        populateGrid(cellList);
 
-        personList.addListener((ListChangeListener<Person>) p -> {
+        cellList.addListener((ListChangeListener<Cell>) p -> {
             personGridPane.getChildren().clear();
-            populateGrid(personList);
+            populateGrid(cellList);
         });
     }
 
-    void populateGrid(ObservableList<Person> personList){
-        for(int i = 0; i < personList.size(); i++) {
+    /**
+     * Populate the map grid with cells in the UI
+     */
+    void populateGrid(ObservableList<Cell> personList) {
+        for (int i = 0; i < personList.size(); i++) {
             Rectangle cell = new Rectangle(30, 30);
             cell.setStroke(Color.BLACK);
             cell.setFill(Color.WHITE);

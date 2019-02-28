@@ -47,7 +47,28 @@ public class PersonListPanel extends UiPart<Region> {
             Rectangle cell = new Rectangle(30, 30);
             cell.setStroke(Color.BLACK);
             cell.setFill(Color.WHITE);
-            Text text = new Text("A");
+            Text text = new Text("");
+
+            switch (personList.get(i).getStatus()) {
+            case HIDDEN:
+                text = new Text("H");
+                break;
+            case SHIP:
+                text = new Text("B");
+                break;
+            case HIT:
+                text = new Text("X");
+                break;
+            case DESTROYED:
+                break;
+            case EMPTY:
+                text = new Text("M");
+                break;
+            default:
+                text = new Text("");
+
+            }
+
             StackPane sp = new StackPane();
             sp.getChildren().addAll(cell, text);
             personGridPane.add(sp, i, 0);

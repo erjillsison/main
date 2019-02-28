@@ -10,10 +10,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Cell;
+import seedu.address.model.cell.Cell;
 
 /**
  * Panel containing the list of persons.
@@ -28,7 +31,7 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Cell> cellList, ObservableValue<Cell> selectedPerson,
                            Consumer<Cell> onSelectedPersonChange) {
         super(FXML);
-
+        
         populateGrid(cellList);
 
         cellList.addListener((ListChangeListener<Cell>) p -> {
@@ -36,6 +39,43 @@ public class PersonListPanel extends UiPart<Region> {
             populateGrid(cellList);
         });
     }
+
+    /**
+     * Populate the map grid with cells in the UI
+     */
+    void populateGrid(ObservableList<Cell> personList) {
+        for (int i = 0; i < personList.size(); i++) {
+            Rectangle cell = new Rectangle(30, 30);
+            cell.setStroke(Color.BLACK);
+            cell.setFill(Color.WHITE);
+            Text text = new Text("");
+
+            switch (personList.get(i).getStatus()) {
+            case HIDDEN:
+                text = new Text("H");
+                break;
+            case SHIP:
+                text = new Text("B");
+                break;
+            case HIT:
+                text = new Text("X");
+                break;
+            case DESTROYED:
+                break;
+            case EMPTY:
+                text = new Text("M");
+                break;
+            default:
+                text = new Text("");
+
+            }
+
+            StackPane sp = new StackPane();
+            sp.getChildren().addAll(cell, text);
+            personGridPane.add(sp, i, 0);
+        }
+    }
+
 
     /**
      * Populate the map grid with cells in the UI

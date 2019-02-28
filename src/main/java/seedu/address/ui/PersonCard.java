@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Cell;
+import seedu.address.model.cell.Cell;
 
 /**
  * An UI component that displays information of a {@code Cell}.
@@ -43,15 +43,12 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
 
         this.cell = cell;
-        /**
-        id.setText(displayedIndex + ". ");
-        name.setText(cell.getName().fullName);
-        phone.setText(cell.getPhone().value);
-        address.setText(cell.getAddress().value);
-        email.setText(cell.getEmail().value);
-        cell.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        */
-
+        //id.setText(displayedIndex + ". ");
+        //name.setText(person.getName().fullName);
+        //phone.setText(person.getPhone().value);
+        //address.setText(person.getAddress().value);
+        //email.setText(person.getEmail().value);
+        //person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

@@ -1,12 +1,15 @@
-package seedu.address.model.person;
+package seedu.address.model.cell;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.battleship.Battleship;
+import seedu.address.model.battleship.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,14 +24,17 @@ public class Cell {
     private final Email email;
 
     // Data fields
+    private Optional<Battleship> battleship;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Status status;
 
     /**
      * Every field must be present and not null.
      */
     public Cell(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.battleship = Optional.empty();
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -37,14 +43,27 @@ public class Cell {
     }
 
     /**
-     * Constructor for cell that requires not arguments
+     * Constructor for cell that requires no arguments
      * To prepare with refactoring Cell to a cell
      */
     public Cell() {
+        this.battleship = Optional.empty();
         this.name = new Name("placeholder");
         this.phone = new Phone("123");
         this.email = new Email("placeholder@gmail.com");
         this.address = new Address("placeholder");
+        this.status = Status.EMPTY;
+    }
+    /**
+     * Constructor for cell that contains battleship
+     */
+    public Cell(Battleship battleship) {
+        this.battleship = Optional.of(battleship);
+        this.name = new Name("This has a hidden ship");
+        this.phone = new Phone("123");
+        this.email = new Email("placeholder@gmail.com");
+        this.address = new Address("placeholder");
+        this.status = Status.HIDDEN;
     }
 
     public Name getName() {
@@ -61,6 +80,20 @@ public class Cell {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    /**
+     * Returns true if this cell has a battleship, otherwise returns false
+     */
+    public boolean hasBattleShip() {
+        if (battleship.isPresent()) {
+            return true;
+        }
+        return false;
     }
 
     /**

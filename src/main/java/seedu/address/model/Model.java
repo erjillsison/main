@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Cell;
+import seedu.address.model.cell.Cell;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -139,6 +139,11 @@ public interface Model {
      * null if no cell is selected.
      */
     Cell getSelectedPerson();
+
+    /**
+     * Returns the map size
+     */
+    int getMapSize();
 
     /**
      * Sets the selected cell in the filtered cell list.

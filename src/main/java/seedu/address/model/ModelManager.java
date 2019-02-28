@@ -18,8 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Cell;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.cell.Cell;
+import seedu.address.model.cell.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -146,6 +146,10 @@ public class ModelManager implements Model {
         return tags.size();
     }
 
+    @Override
+    public int getMapSize() {
+        return versionedAddressBook.getMapSize();
+    }
     //=========== Filtered Cell List Accessors =============================================================
 
     /**

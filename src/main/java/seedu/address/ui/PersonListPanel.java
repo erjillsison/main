@@ -10,8 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cell.Cell;
 
@@ -45,7 +47,10 @@ public class PersonListPanel extends UiPart<Region> {
             Rectangle cell = new Rectangle(30, 30);
             cell.setStroke(Color.BLACK);
             cell.setFill(Color.WHITE);
-            personGridPane.add(cell, i, 0);
+            Text text = new Text("A");
+            StackPane sp = new StackPane();
+            sp.getChildren().addAll(cell, text);
+            personGridPane.add(sp, i, 0);
         }
     }
 

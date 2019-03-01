@@ -2,6 +2,6 @@
 
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rows" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="rows" fillWidth="false" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
 </VBox>
 

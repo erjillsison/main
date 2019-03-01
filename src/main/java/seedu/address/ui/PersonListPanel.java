@@ -8,7 +8,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -18,6 +18,8 @@ import javafx.scene.text.Text;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cell.Cell;
 
+
+
 /**
  * Panel containing the list of persons.
  */
@@ -26,24 +28,25 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private GridPane personGridPane;
+    private HBox row;
 
     public PersonListPanel(ObservableList<Cell> cellList, ObservableValue<Cell> selectedPerson,
                            Consumer<Cell> onSelectedPersonChange) {
         super(FXML);
-        
         populateGrid(cellList);
 
+
         cellList.addListener((ListChangeListener<Cell>) p -> {
-            personGridPane.getChildren().clear();
-            populateGrid(cellList);
+            row.getChildren().clear();
+            repopulateGrid(cellList);
         });
     }
 
     /**
      * Populate the map grid with cells in the UI
      */
-    void populateGrid(ObservableList<Cell> personList) {
+    void repopulateGrid(ObservableList<Cell> personList) {
+
         for (int i = 0; i < personList.size(); i++) {
             Rectangle cell = new Rectangle(30, 30);
             cell.setStroke(Color.BLACK);
@@ -72,7 +75,7 @@ public class PersonListPanel extends UiPart<Region> {
 
             StackPane sp = new StackPane();
             sp.getChildren().addAll(cell, text);
-            personGridPane.add(sp, i, 0);
+            row.getChildren().add(sp);
         }
     }
 
@@ -85,10 +88,12 @@ public class PersonListPanel extends UiPart<Region> {
             Rectangle cell = new Rectangle(30, 30);
             cell.setStroke(Color.BLACK);
             cell.setFill(Color.WHITE);
-            personGridPane.add(cell, i, 0);
+            Text text = new Text("");
+            StackPane sp = new StackPane();
+            sp.getChildren().addAll(cell, text);
+            row.getChildren().add(sp);
         }
     }
-
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Cell} using a {@code PersonCard}.

@@ -107,11 +107,9 @@ public class Cell {
     public boolean isSamePerson(Cell otherCell) {
         if (otherCell == this) {
             return true;
+        } else {
+            return false;
         }
-
-        return otherCell != null
-                && otherCell.getName().equals(getName())
-                && (otherCell.getPhone().equals(getPhone()) || otherCell.getEmail().equals(getEmail()));
     }
 
     /**

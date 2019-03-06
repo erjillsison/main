@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -19,7 +20,7 @@ import seedu.address.model.cell.exceptions.PersonNotFoundException;
  */
 public class Row implements Iterable<Cell> {
 
-    private final ObservableList<Cell> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Cell> internalList = FXCollections.observableArrayList(cell -> new Observable[] {cell.getToggleProperty()});
     private final ObservableList<Cell> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 

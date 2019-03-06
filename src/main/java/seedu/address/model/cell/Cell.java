@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import seedu.address.model.battleship.Battleship;
 import seedu.address.model.battleship.Name;
 import seedu.address.model.tag.Tag;
@@ -22,6 +24,7 @@ public class Cell {
     private Name name;
     private final Phone phone;
     private final Email email;
+    private final StringProperty toggle = new SimpleStringProperty();
 
     // Data fields
     private Optional<Battleship> battleship;
@@ -98,8 +101,16 @@ public class Cell {
     public void putShip(Battleship battleship) {
         this.battleship = Optional.of(battleship);
         this.name = battleship.getName();
+        if (toggle.getValue() != "yes") {
+            toggle.setValue("no");
+        } else {
+            toggle.setValue("yes");
+        }
     }
 
+    public StringProperty getToggleProperty() {
+        return toggle;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
